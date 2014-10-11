@@ -1,0 +1,14 @@
+# Keys
+keys.secondcircle.category=Second Circle
+keys.secondcircle.charge=Charge
+keys.secondcircle.release=Release
+
+# Creative Tabs
+itemGroup.secondcircle=Second Circle
+
+# Items
+item.secondcircle:igniter.name=Second Circle Portal Igniter
+item.secondcircle:scicon.name=Second Circle Icon
+
+#Blocks
+tile.secondcircle:portal.name=Second Circle Portal
