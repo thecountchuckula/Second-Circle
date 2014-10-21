@@ -10,5 +10,12 @@ itemGroup.secondcircle=Second Circle
 item.secondcircle:igniter.name=Second Circle Portal Igniter
 item.secondcircle:scicon.name=Second Circle Icon
 
-#Blocks
+# Blocks
 tile.secondcircle:portal.name=Second Circle Portal
+tile.secondcircle:fire.name=Portal Fire
+
+# Enchantments
+enchantment.nightvision=Felis Oculus
+enchantment.angelwings=Angeli Alae
+enchantment.jumping=Salire Luna
+enchantment.swiftness=Velocitas
