@@ -1,6 +1,7 @@
 package com.tcc.secondcircle.block;
 
 
+import com.tcc.secondcircle.init.ModBlocks;
 import com.tcc.secondcircle.reference.Names;
 import com.tcc.secondcircle.reference.Reference;
 import cpw.mods.fml.relauncher.Side;
@@ -9,6 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
@@ -63,16 +65,81 @@ public class BlockFire extends Block
     }
     public void onBlockAdded(World p_149726_1_, int p_149726_2_, int p_149726_3_, int p_149726_4_)
     {
-        if (p_149726_1_.getBlock(p_149726_2_, p_149726_3_ -1, p_149726_4_) != Blocks.brick_block || (!BlockPortal.tryToCreatePortal(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_)))
+        if (p_149726_1_.getBlock(p_149726_2_, p_149726_3_ -1, p_149726_4_) == Blocks.nether_brick) {
+            if (p_149726_1_.getBlock(p_149726_2_ + 1, p_149726_3_ - 1, p_149726_4_) == Blocks.nether_brick) {
+                if (p_149726_1_.getBlock(p_149726_2_, p_149726_3_ - 1, p_149726_4_ + 1) == Blocks.nether_brick) {
+                    if (p_149726_1_.getBlock(p_149726_2_ - 1, p_149726_3_ - 1, p_149726_4_) == Blocks.nether_brick) {
+                        if (p_149726_1_.getBlock(p_149726_2_, p_149726_3_ - 1, p_149726_4_ - 1) == Blocks.nether_brick) {
+                            if (p_149726_1_.getBlock(p_149726_2_ + 1, p_149726_3_ - 1, p_149726_4_ + 1) == Blocks.nether_brick) {
+                                if (p_149726_1_.getBlock(p_149726_2_ + 1, p_149726_3_ - 1, p_149726_4_ + 1) == Blocks.nether_brick) {
+                                    if (p_149726_1_.getBlock(p_149726_2_ - 1, p_149726_3_ - 1, p_149726_4_ - 1) == Blocks.nether_brick) {
+                                        if (p_149726_1_.getBlock(p_149726_2_ - 1, p_149726_3_ - 1, p_149726_4_ - 1) == Blocks.nether_brick) {
+                                            if (p_149726_1_.getBlock(p_149726_2_ - 1, p_149726_3_ - 1, p_149726_4_ + 2) == Blocks.nether_brick) {
+                                                if (p_149726_1_.getBlock(p_149726_2_, p_149726_3_ - 1, p_149726_4_ + 2) == Blocks.nether_brick) {
+                                                    if (p_149726_1_.getBlock(p_149726_2_ + 1, p_149726_3_ - 1, p_149726_4_ + 2) == Blocks.nether_brick) {
+                                                        if (p_149726_1_.getBlock(p_149726_2_ - 2, p_149726_3_ - 1, p_149726_4_ + 1) == Blocks.nether_brick) {
+                                                            if (p_149726_1_.getBlock(p_149726_2_ - 2, p_149726_3_ - 1, p_149726_4_) == Blocks.nether_brick) {
+                                                                if (p_149726_1_.getBlock(p_149726_2_ - 2, p_149726_3_ - 1, p_149726_4_ - 1) == Blocks.nether_brick) {
+                                                                    if (p_149726_1_.getBlock(p_149726_2_ + 1, p_149726_3_ - 1, p_149726_4_ - 2) == Blocks.nether_brick) {
+                                                                        if (p_149726_1_.getBlock(p_149726_2_, p_149726_3_ - 1, p_149726_4_ - 2) == Blocks.nether_brick) {
+                                                                            if (p_149726_1_.getBlock(p_149726_2_ - 1, p_149726_3_ - 1, p_149726_4_ - 2) == Blocks.nether_brick) {
+                                                                                if (p_149726_1_.getBlock(p_149726_2_ + 2, p_149726_3_ - 1, p_149726_4_ + 1) == Blocks.nether_brick) {
+                                                                                    if (p_149726_1_.getBlock(p_149726_2_ + 2, p_149726_3_ - 1, p_149726_4_) == Blocks.nether_brick) {
+                                                                                        if (p_149726_1_.getBlock(p_149726_2_ + 2, p_149726_3_ - 1, p_149726_4_ - 1) == Blocks.nether_brick) {
+                                                                                            //Layer 1
+                                                                                            p_149726_1_.setBlock(p_149726_2_ + 1, p_149726_3_, p_149726_4_ + 1, ModBlocks.portal);
+                                                                                            p_149726_1_.setBlock(p_149726_2_ + 1, p_149726_3_, p_149726_4_, ModBlocks.portal);
+                                                                                            p_149726_1_.setBlock(p_149726_2_ + 1, p_149726_3_, p_149726_4_ - 1, ModBlocks.portal);
+                                                                                            p_149726_1_.setBlock(p_149726_2_, p_149726_3_, p_149726_4_ + 1, ModBlocks.portal);
+                                                                                            p_149726_1_.setBlock(p_149726_2_, p_149726_3_, p_149726_4_, ModBlocks.portal);
+                                                                                            p_149726_1_.setBlock(p_149726_2_, p_149726_3_, p_149726_4_ - 1, ModBlocks.portal);
+                                                                                            p_149726_1_.setBlock(p_149726_2_ - 1, p_149726_3_, p_149726_4_ + 1, ModBlocks.portal);
+                                                                                            p_149726_1_.setBlock(p_149726_2_ - 1, p_149726_3_, p_149726_4_, ModBlocks.portal);
+                                                                                            p_149726_1_.setBlock(p_149726_2_ - 1, p_149726_3_, p_149726_4_ - 1, ModBlocks.portal);
+                                                                                            //Layer 2
+                                                                                            p_149726_1_.setBlock(p_149726_2_ + 1, p_149726_3_ + 1, p_149726_4_ + 1, ModBlocks.portal);
+                                                                                            p_149726_1_.setBlock(p_149726_2_ + 1, p_149726_3_ + 1, p_149726_4_, ModBlocks.portal);
+                                                                                            p_149726_1_.setBlock(p_149726_2_ + 1, p_149726_3_ + 1, p_149726_4_ - 1, ModBlocks.portal);
+                                                                                            p_149726_1_.setBlock(p_149726_2_, p_149726_3_ + 1, p_149726_4_ + 1, ModBlocks.portal);
+                                                                                            p_149726_1_.setBlock(p_149726_2_, p_149726_3_ + 1, p_149726_4_, ModBlocks.portal);
+                                                                                            p_149726_1_.setBlock(p_149726_2_, p_149726_3_ + 1, p_149726_4_ - 1, ModBlocks.portal);
+                                                                                            p_149726_1_.setBlock(p_149726_2_ - 1, p_149726_3_ + 1, p_149726_4_ + 1, ModBlocks.portal);
+                                                                                            p_149726_1_.setBlock(p_149726_2_ - 1, p_149726_3_ + 1, p_149726_4_, ModBlocks.portal);
+                                                                                            p_149726_1_.setBlock(p_149726_2_ - 1, p_149726_3_ + 1, p_149726_4_ - 1, ModBlocks.portal);
+                                                                                            //Layer 3
+                                                                                            p_149726_1_.setBlock(p_149726_2_ + 1, p_149726_3_ + 2, p_149726_4_ + 1, ModBlocks.portal);
+                                                                                            p_149726_1_.setBlock(p_149726_2_ + 1, p_149726_3_ + 2, p_149726_4_, ModBlocks.portal);
+                                                                                            p_149726_1_.setBlock(p_149726_2_ + 1, p_149726_3_ + 2, p_149726_4_ - 1, ModBlocks.portal);
+                                                                                            p_149726_1_.setBlock(p_149726_2_, p_149726_3_ + 2, p_149726_4_ + 1, ModBlocks.portal);
+                                                                                            p_149726_1_.setBlock(p_149726_2_, p_149726_3_ + 2, p_149726_4_, ModBlocks.portal);
+                                                                                            p_149726_1_.setBlock(p_149726_2_, p_149726_3_ + 2, p_149726_4_ - 1, ModBlocks.portal);
+                                                                                            p_149726_1_.setBlock(p_149726_2_ - 1, p_149726_3_ + 2, p_149726_4_ + 1, ModBlocks.portal);
+                                                                                            p_149726_1_.setBlock(p_149726_2_ - 1, p_149726_3_ + 2, p_149726_4_, ModBlocks.portal);
+                                                                                            p_149726_1_.setBlock(p_149726_2_ - 1, p_149726_3_ + 2, p_149726_4_ - 1, ModBlocks.portal);
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else
         {
-            if (!p_149726_1_.doesBlockHaveSolidTopSurface(p_149726_1_, p_149726_2_, p_149726_3_ - 1, p_149726_4_))
-            {
-                p_149726_1_.setBlockToAir(p_149726_2_, p_149726_3_, p_149726_4_);
-            }
-            else
-            {
-                p_149726_1_.scheduleBlockUpdate(p_149726_2_, p_149726_3_, p_149726_4_, this, this.tickRate(p_149726_1_) + p_149726_1_.rand.nextInt(10));
-            }
+            p_149726_1_.setBlockToAir(p_149726_2_, p_149726_3_, p_149726_4_);
         }
     }
     @Override

@@ -29,4 +29,8 @@ public final class Names
         public static final String SPEED = "swiftness";
 
     }
+    public static final class Chat
+    {
+        public static final String PORTALFAIL = "msg.portalfail.txt";
+    }
 }

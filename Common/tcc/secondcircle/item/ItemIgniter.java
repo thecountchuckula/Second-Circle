@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
 
 public class ItemIgniter extends ItemSC
@@ -60,10 +61,15 @@ public class ItemIgniter extends ItemSC
         }
         else
         {
-            if (p_77648_3_.isAirBlock(p_77648_4_, p_77648_5_, p_77648_6_))
+            if ((p_77648_3_.isAirBlock(p_77648_4_, p_77648_5_, p_77648_6_)) && p_77648_2_.dimension > -3 && p_77648_2_.dimension < 0)
             {
                 p_77648_3_.playSoundEffect((double)p_77648_4_ + 0.5D, (double)p_77648_5_ + 0.5D, (double)p_77648_6_ + 0.5D, "fire.ignite", 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
                 p_77648_3_.setBlock(p_77648_4_, p_77648_5_, p_77648_6_, ModBlocks.fire);
+            }
+            else
+            {
+                p_77648_3_.playSoundEffect((double)p_77648_4_ + 0.5D, (double)p_77648_5_ + 0.5D, (double)p_77648_6_ + 0.5D, "mob.wither.spawn", 1.0F, itemRand.nextFloat() * 0.4F + 4.0F);
+                p_77648_2_.addChatMessage(new ChatComponentTranslation(Names.Chat.PORTALFAIL));
             }
 
             p_77648_1_.damageItem(1, p_77648_2_);
