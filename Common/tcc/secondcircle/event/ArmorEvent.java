@@ -3,6 +3,7 @@
 package com.tcc.secondcircle.event;
 
 import com.tcc.secondcircle.enchantment.ModEnchantments;
+import com.tcc.secondcircle.handler.AchievementHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -20,22 +21,22 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 
 public class ArmorEvent {
-	// Booleans, my boys
+	// Booleans
 	boolean isJumping = false;
-	boolean isSwiftness = false;
-	boolean isAngelwings = false;
-	boolean isNightvision = false;
-	boolean flying = false;
+    boolean isSwiftness = false;
+    boolean isAngelwings = false;
+    boolean isNightvision = false;
+    boolean flying = false;
 
-	// Inegers, ya idiots
-	int jumpingAmount;
-	int swiftnessAmount;
-	int angelwingsAmount;
-	int nightvisionAmount;
+	// Integers
+    int jumpingAmount;
+    int swiftnessAmount;
+    int angelwingsAmount;
+    int nightvisionAmount;
 
 	// Misc.
-	boolean respawned;
-	ItemStack inventory[];
+    boolean respawned;
+    ItemStack inventory[];
 
 	@SubscribeEvent
 	public void livingUpdateEvent(LivingEvent.LivingUpdateEvent event) {
@@ -180,6 +181,11 @@ public class ArmorEvent {
             if(isAngelwings = true && player.lastTickPosY <= 256 && flying == true && !player.onGround && angelwingsAmount != 0)
             {
                 player.motionY = .5;
+                if(player.lastTickPosY >= 250)
+                {
+
+                    player.addStat(AchievementHandler.secondCircleFly, 1);
+                }
             }
             else
             {

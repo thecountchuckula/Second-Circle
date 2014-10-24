@@ -33,4 +33,10 @@ public final class Names
     {
         public static final String PORTALFAIL = "msg.portalfail.txt";
     }
+    public static final class Achievements
+    {
+        public static final String SECONDCIRCLEPORTAL = "secondcircleportal";
+        public static final String SECONDCIRCLEFLY = "secondcirclefly";
+        public static final String SECONDCIRCLEBAT = "secondcirclebat";
+    }
 }

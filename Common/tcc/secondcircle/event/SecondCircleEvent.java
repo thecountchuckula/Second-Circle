@@ -1,7 +1,11 @@
 package com.tcc.secondcircle.event;
 
 
+import com.tcc.secondcircle.handler.AchievementHandler;
+import com.tcc.secondcircle.reference.Reference;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent;
+import net.minecraft.entity.EntityLiving;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 
