@@ -27,7 +27,7 @@ public final class Names
         public static final String AW = "angelwings";
         public static final String JUMP = "jumping";
         public static final String SPEED = "swiftness";
-
+        public static final String FT = "firetool";
     }
     public static final class Chat
     {

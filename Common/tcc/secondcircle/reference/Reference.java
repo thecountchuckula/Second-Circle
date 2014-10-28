@@ -16,4 +16,5 @@ public class Reference
     public static final int angelwingsID = 11;
     public static final int jumpingID = 12;
     public static final int swiftnessID = 13;
+    public static final int firetoolID = 14;
 }

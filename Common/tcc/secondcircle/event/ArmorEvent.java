@@ -178,7 +178,7 @@ public class ArmorEvent {
         {
             EntityPlayer player = (EntityPlayer) event.entityLiving;
 
-            if(isAngelwings = true && player.lastTickPosY <= 256 && flying == true && !player.onGround && angelwingsAmount != 0)
+            if(isAngelwings = true && player.lastTickPosY <= 256 && flying == true && !player.onGround && angelwingsAmount == 1)
             {
                 player.motionY = .5;
                 if(player.lastTickPosY >= 250)
@@ -186,6 +186,10 @@ public class ArmorEvent {
 
                     player.addStat(AchievementHandler.secondCircleFly, 1);
                 }
+            }
+            else if(isAngelwings = true && angelwingsAmount >= 2)
+            {
+                player.capabilities.allowFlying = true;
             }
             else
             {
