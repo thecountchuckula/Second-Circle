@@ -5,6 +5,7 @@ package com.tcc.secondcircle.event;
 import com.tcc.secondcircle.enchantment.ModEnchantments;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.block.Block;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -23,30 +24,48 @@ public class BlockBreakEvent {
 	boolean isFireTool = false;
 
 	// Integers
+    int fortuneLevel;
     int fireToolLevel;
 
 	// Misc.
     @SubscribeEvent
     public void onBlockBreak(BlockEvent.HarvestDropsEvent event)
     {
-        EntityPlayer player = event.harvester;
-        ItemStack heldItem = player.inventory.getCurrentItem();
         Block block = event.block;
-        fireToolLevel = EnchantmentHelper.getEnchantmentLevel(ModEnchantments.firetool.effectId, heldItem);
+        if(event.harvester.inventory.getCurrentItem().getItem() != null)
+        {
+            EntityPlayer player = event.harvester;
+            ItemStack heldItem = player.inventory.getCurrentItem();
+            fortuneLevel = EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, heldItem);
+            fireToolLevel = EnchantmentHelper.getEnchantmentLevel(ModEnchantments.firetool.effectId, heldItem);
+        }
+        else
+        {
+            fortuneLevel = 0;
+            fireToolLevel = 0;
+        }
         ArrayList<FurnaceRecipes> furnaceRecipes;
 
-        if (!event.world.isRemote && fireToolLevel > 0)
-        {
+        if (!event.world.isRemote && fireToolLevel > 0) {
+            if (block == Blocks.iron_ore)
+            {
                 GenerateLootList(event.drops,
                         Items.iron_ingot,
-                        event.fortuneLevel,
-                        this.fireToolLevel,
+                        fortuneLevel,
+                        fireToolLevel,
                         event.world);
                 event.dropChance = 1.0F;
                 return;
+            }
         }
+
     }
-    private void GenerateLootList(ArrayList<ItemStack> dList, Item dItem, int fTLevel, int fLevel, World world)
+    private void GenerateLootList
+            (ArrayList<ItemStack> dList,
+             Item dItem,
+             int fLevel,
+             int fTLevel,
+             World world)
     {
         int foCount = 0;
         if(fLevel >= 0 && fTLevel > 0)
