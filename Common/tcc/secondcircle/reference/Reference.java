@@ -11,10 +11,11 @@ public class Reference
 
     public static final int DIM_ID = -2;
 
-
+    //ArmorEnchants
     public static final int nightvisionID = 10;
     public static final int angelwingsID = 11;
     public static final int jumpingID = 12;
     public static final int swiftnessID = 13;
+    //ToolEnchants
     public static final int firetoolID = 14;
 }

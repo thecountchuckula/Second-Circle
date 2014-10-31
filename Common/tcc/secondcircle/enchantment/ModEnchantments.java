@@ -23,7 +23,7 @@ public class ModEnchantments
     	angelwings = new EnchantmentChestplate(Reference.angelwingsID, 2);
     	jumping = new EnchantmentLeggings(Reference.jumpingID, 2);
         swiftness = new EnchantmentBoots(Reference.swiftnessID, 2);
-        swiftness = new EnchantmentTool(Reference.firetoolID, 2);
+        firetool = new EnchantmentTool(Reference.firetoolID, 2);
     }
 
     public static void initGameRegistry() {
