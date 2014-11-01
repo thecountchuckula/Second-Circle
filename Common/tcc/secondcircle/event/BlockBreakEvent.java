@@ -3,11 +3,10 @@
 package com.tcc.secondcircle.event;
 
 import com.tcc.secondcircle.enchantment.ModEnchantments;
-import com.tcc.secondcircle.utility.LogHelper;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockWood;
-import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,172 +15,53 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.world.World;
 import net.minecraftforge.event.world.BlockEvent;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class BlockBreakEvent {
-	// Booleans
-	boolean isFireTool = false;
 
-	// Integers
     int fortuneLevel = 0;
     int fireToolLevel = 0;
 
-	// Misc.
     @SubscribeEvent
-    public void onBlockBreak(BlockEvent.HarvestDropsEvent event)
-    {
+    public void onBlockBreak(BlockEvent.HarvestDropsEvent event) {
         Block block = event.block;
-        if(!event.world.isRemote && event.harvester != null)
-        {
+        if (!event.world.isRemote && event.harvester != null) {
             EntityPlayer player = event.harvester;
-            if(!event.world.isRemote && player.inventory.getCurrentItem() != null)
-            {
+            if (!event.world.isRemote && player.inventory.getCurrentItem() != null) {
                 ItemStack heldItem = player.inventory.getCurrentItem();
-                if(EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, heldItem) > 0)
-                {
+                if (EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, heldItem) > 0) {
                     fortuneLevel = EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, heldItem);
-                }
-                else
-                {
+                } else {
                     fortuneLevel = 0;
                 }
-                if(EnchantmentHelper.getEnchantmentLevel(ModEnchantments.firetool.effectId, heldItem) > 0)
-                {
+                if (EnchantmentHelper.getEnchantmentLevel(ModEnchantments.firetool.effectId, heldItem) > 0) {
                     fireToolLevel = EnchantmentHelper.getEnchantmentLevel(ModEnchantments.firetool.effectId, heldItem);
-                }
-                else
-                {
+                } else {
                     fireToolLevel = 0;
                 }
             }
         }
-        if (fireToolLevel == 1)
-        {
-            ItemStack smeltResult = null;
-            Object tmpSmelt = null;
-            for (int scanRecipes = 0; scanRecipes < FurnaceRecipes.smelting().getSmeltingList().size(); scanRecipes++) {
-                tmpSmelt = FurnaceRecipes.smelting().getSmeltingList().get(scanRecipes);
-                for (int scanDrops = 0; scanDrops < event.drops.size(); scanDrops++)
-                    if (event.drops.contains(tmpSmelt)) {
-                        smeltResult = FurnaceRecipes.smelting().getSmeltingResult(new ItemStack(event.drops.get(scanDrops).getItem()));
-                        event.drops.remove(tmpSmelt);
-                        if (smeltResult != null) {
-                            event.drops.add(smeltResult);
-                            if (fortuneLevel >= 1) {
-                                int foCount = event.world.rand.nextInt(fortuneLevel);
-                                for (int i = 0; i < foCount; ++i) {
-                                    event.drops.add(smeltResult);
-                                }
-                            }
-                        }
+        if (fireToolLevel == 1) {
+            Item dropItem = null;
+            Item smeltResult = null;
+            for (int dropScan = 0; dropScan < event.drops.size(); dropScan++) {
+                dropItem = (event.drops.get(dropScan).getItem());
+                if (FurnaceRecipes.smelting().getSmeltingResult(new ItemStack(dropItem)) != null) {
+                    smeltResult = FurnaceRecipes.smelting().getSmeltingResult(new ItemStack(dropItem)).getItem();
+                    event.drops.remove(new ItemStack(event.drops.get(dropScan).getItem()));
+                    event.drops.add(dropScan, new ItemStack(smeltResult));
+                    if (event.drops.get(dropScan).getItem() == Items.brick) {
+                        event.drops.add(new ItemStack(smeltResult, 3, 0));
                     }
-                }
-
-/*
-            //Will remove these references, once I figure how to implement furnaceRecipes
-            if (block == Blocks.iron_ore && event.harvester.canHarvestBlock(block))
-            {
-                if(fireToolLevel == 1)
-                {
-                    event.drops.clear();
-                    event.drops.add(new ItemStack(Items.iron_ingot, 1, 0));
-                    if(fortuneLevel >= 1)
-                    {
+                    if (fortuneLevel >= 1 && block != Blocks.stone && block != Blocks.cobblestone) {
                         int foCount = event.world.rand.nextInt(fortuneLevel);
-                        for (int i = 0; i < foCount; ++i)
-                        {
-                            event.drops.add(new ItemStack(Items.iron_ingot, 1, 0));
+                        for (int i = 0; i < foCount; ++i) {
+                            event.drops.add(new ItemStack(smeltResult));
                         }
                     }
                 }
-                event.dropChance = 1.0F;
-                System.out.println(FurnaceRecipes.smelting().getSmeltingList());
             }
-            if (block == Blocks.gold_ore && event.harvester.canHarvestBlock(block))
-            {
-                if(fireToolLevel == 1)
-                {
-                    event.drops.clear();
-                    event.drops.add(new ItemStack(Items.gold_ingot, 1, 0));
-                    if(fortuneLevel >= 1)
-                    {
-                        int foCount = event.world.rand.nextInt(fortuneLevel);
-                        for (int i = 0; i < foCount; ++i)
-                        {
-                            event.drops.add(new ItemStack(Items.gold_ingot, 1, 0));
-                        }
-                    }
-                }
-                event.dropChance = 1.0F;
-            }
-            if (block == Blocks.sand && event.harvester.canHarvestBlock(block))
-            {
-                if(fireToolLevel == 1)
-                {
-                    event.drops.clear();
-                    event.drops.add(new ItemStack(Blocks.glass, 1, 0));
-                    if(fortuneLevel >= 1)
-                    {
-                        int foCount = event.world.rand.nextInt(fortuneLevel);
-                        for (int i = 0; i < foCount; ++i)
-                        {
-                            event.drops.add(new ItemStack(Blocks.glass, 1, 0));
-                        }
-                    }
-                }
-                event.dropChance = 1.0F;
-            }
-            if (block == Blocks.log | block == Blocks.log2 && event.harvester.canHarvestBlock(block))
-            {
-                if(fireToolLevel == 1)
-                {
-                    event.drops.clear();
-                    event.drops.add(new ItemStack(Items.coal, 1, 1));
-                    if(fortuneLevel >= 1)
-                    {
-                        int foCount = event.world.rand.nextInt(fortuneLevel);
-                        for (int i = 0; i < foCount; ++i)
-                        {
-                            event.drops.add(new ItemStack(Items.coal, 1, 1));
-                        }
-                    }
-                }
-                event.dropChance = 1.0F;
-            }
-            if (block == Blocks.clay && event.harvester.canHarvestBlock(block))
-            {
-                if(fireToolLevel == 1)
-                {
-                    event.drops.clear();
-                    event.drops.add(new ItemStack(Items.brick, 4, 0));
-                    if(fortuneLevel >= 1)
-                    {
-                        int foCount = event.world.rand.nextInt(fortuneLevel);
-                        for (int i = 0; i < foCount; ++i)
-                        {
-                            event.drops.add(new ItemStack(Items.brick, 1, 0));
-                        }
-                    }
-                }
-                event.dropChance = 1.0F;
-            }
-            if (block == Blocks.stone | block == Blocks.cobblestone && event.harvester.canHarvestBlock(block))
-            {
-                if(fireToolLevel == 1)
-                {
-                    event.drops.clear();
-                    event.drops.add(new ItemStack(Blocks.stone, 1, 0));
-                }
-                event.dropChance = 1.0F;
-            }*/
         }
     }
 }
