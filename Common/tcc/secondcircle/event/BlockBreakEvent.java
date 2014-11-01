@@ -16,10 +16,14 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.BlockEvent;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class BlockBreakEvent {
@@ -61,6 +65,27 @@ public class BlockBreakEvent {
         }
         if (fireToolLevel == 1)
         {
+            ItemStack smeltResult = null;
+            Object tmpSmelt = null;
+            for (int scanRecipes = 0; scanRecipes < FurnaceRecipes.smelting().getSmeltingList().size(); scanRecipes++) {
+                tmpSmelt = FurnaceRecipes.smelting().getSmeltingList().get(scanRecipes);
+                for (int scanDrops = 0; scanDrops < event.drops.size(); scanDrops++)
+                    if (event.drops.contains(tmpSmelt)) {
+                        smeltResult = FurnaceRecipes.smelting().getSmeltingResult(new ItemStack(event.drops.get(scanDrops).getItem()));
+                        event.drops.remove(tmpSmelt);
+                        if (smeltResult != null) {
+                            event.drops.add(smeltResult);
+                            if (fortuneLevel >= 1) {
+                                int foCount = event.world.rand.nextInt(fortuneLevel);
+                                for (int i = 0; i < foCount; ++i) {
+                                    event.drops.add(smeltResult);
+                                }
+                            }
+                        }
+                    }
+                }
+
+/*
             //Will remove these references, once I figure how to implement furnaceRecipes
             if (block == Blocks.iron_ore && event.harvester.canHarvestBlock(block))
             {
@@ -78,6 +103,7 @@ public class BlockBreakEvent {
                     }
                 }
                 event.dropChance = 1.0F;
+                System.out.println(FurnaceRecipes.smelting().getSmeltingList());
             }
             if (block == Blocks.gold_ore && event.harvester.canHarvestBlock(block))
             {
@@ -155,7 +181,7 @@ public class BlockBreakEvent {
                     event.drops.add(new ItemStack(Blocks.stone, 1, 0));
                 }
                 event.dropChance = 1.0F;
-            }
+            }*/
         }
     }
 }
