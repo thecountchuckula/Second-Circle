@@ -19,3 +19,15 @@ enchantment.nightvision=Felis Oculus
 enchantment.angelwings=Angeli Alae
 enchantment.jumping=Salire Luna
 enchantment.swiftness=Velocitas
+enchantment.firetool=Punctum Coquo
+
+#Messages
+msg.portalfail.txt=You cannot use that here.
+
+#Achievements
+achievement.secondcircleportal=Go Even Deeper
+achievement.secondcircleportal.desc=Travel to the Second Circle Dimension.
+achievement.secondcirclefly=I Believe I Can Fly
+achievement.secondcirclefly.desc=Fly up to the build limit.
+achievement.secondcirclebat=Vampire Hunter
+achievement.secondcirclebat.desc=Kill a Bat with an arrow.
