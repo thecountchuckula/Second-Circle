@@ -1,6 +1,7 @@
 package com.tcc.secondcircle.event;
 
 import com.tcc.secondcircle.handler.AchievementHandler;
+import com.tcc.secondcircle.init.ModItems;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,6 +20,12 @@ public class BatKillEvent{
 			EntityPlayer player = (EntityPlayer) event.source.getEntity();
 
 			if (event.entityLiving instanceof EntityBat) {
+                int meat = ((EntityBat) event.entityLiving).worldObj.rand.nextInt(2);
+                if(meat < 2)
+                {
+                    event.entityLiving.dropItem(ModItems.rawbat, 1);
+
+                }
 
                 
 				if (event.lootingLevel == 0) {
@@ -58,6 +65,12 @@ public class BatKillEvent{
 
 					EntityPlayer player = (EntityPlayer) event.source.getEntity();
 					if (event.entityLiving instanceof EntityBat) {
+                        int meat = ((EntityBat) event.entityLiving).worldObj.rand.nextInt(2);
+                        if(meat < 2)
+                        {
+                            event.entityLiving.dropItem(ModItems.rawbat, 1);
+
+                        }
                         player.addStat(AchievementHandler.secondCircleBat, 1);
 						if (event.lootingLevel == 0) {
 							int gold = event.entityLiving.worldObj.rand

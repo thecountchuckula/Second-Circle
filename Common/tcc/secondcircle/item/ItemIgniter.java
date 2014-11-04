@@ -14,7 +14,7 @@ public class ItemIgniter extends ItemSC
     public ItemIgniter()
     {
         super();
-        this.setMaxDamage(16);
+        this.setMaxDamage(64);
         this.setMaxStackSize(1);
         this.setUnlocalizedName(Names.Items.IGNITER);
     }

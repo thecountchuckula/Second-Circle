@@ -9,6 +9,8 @@ itemGroup.secondcircle=Second Circle
 # Items
 item.secondcircle:igniter.name=Second Circle Portal Igniter
 item.secondcircle:scicon.name=Second Circle Icon
+item.secondcircle:rawbat.name=Raw Bat Meat
+item.secondcircle:cookedbat.name=Cooked Bat Meat
 
 # Blocks
 tile.secondcircle:portal.name=Second Circle Portal

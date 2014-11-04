@@ -6,6 +6,8 @@ public final class Names
     {
         public static final String IGNITER = "igniter";
         public static final String SCICON = "scicon";
+        public static final String RAWBAT = "rawbat";
+        public static final String COOKEDBAT = "cookedbat";
     }
 
     public static final class Blocks

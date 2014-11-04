@@ -4,6 +4,7 @@ import com.tcc.secondcircle.init.ModBlocks;
 import com.tcc.secondcircle.init.ModItems;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
@@ -20,20 +21,6 @@ public class CraftingHandler
     {
         GameRegistry.addRecipe(new ItemStack(ModItems.igniter), "  n", " q ", " d ", 'n', Items.nether_star, 'q', Items.quartz, 'd', Items.diamond);
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.igniter), " s ", "sss", " s ", 's', "stickWood"));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModBlocks.fire), "stickWood", new ItemStack(ModItems.igniter)));
-    }
-    public void onCrafting(EntityPlayer player, ItemStack item, IInventory craftMatrix) {
-        for (int i = 0; i < craftMatrix.getSizeInventory(); i++) {
-            if (craftMatrix.getStackInSlot(i) != null) {
-                ItemStack j = craftMatrix.getStackInSlot(i);
-                if (j.getItem() != null && j.getItem() == ModItems.igniter) {
-                    ItemStack k = new ItemStack(ModItems.igniter, 2, (j.getItemDamage() + 1));
-                    if (k.getItemDamage() >= k.getMaxDamage()) {
-                        k.stackSize--;
-                    }
-                    craftMatrix.setInventorySlotContents(i, k);
-                }
-            }
-        }
+        GameRegistry.addSmelting(new ItemStack(ModItems.rawbat, 1, 0), new ItemStack(ModItems.cookedbat, 1, 0), 0.35F);
     }
 }
