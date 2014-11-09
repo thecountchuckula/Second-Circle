@@ -16,6 +16,13 @@ item.secondcircle:cookedbat.name=Cooked Bat Meat
 tile.secondcircle:portal.name=Second Circle Portal
 tile.secondcircle:fire.name=Portal Fire
 
+# Entities
+entity.vampire.name=Vampire
+entity.munchkin.name=Munchkin
+entity.scarecrow.name=Scarecrow
+entity.twister.name=Twister
+entity.goodwitch.name=Good Witch
+
 # Enchantments
 enchantment.nightvision=Felis Oculus
 enchantment.angelwings=Angeli Alae

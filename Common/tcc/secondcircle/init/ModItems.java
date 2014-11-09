@@ -18,7 +18,7 @@ public class ModItems
     public static final ItemBatMeat rawbat = new ItemBatMeat(2, 0.3F, true, false, Names.Items.RAWBAT);
     public static final ItemBatMeat cookedbat = new ItemBatMeat(7, 0.9F, false, false, Names.Items.COOKEDBAT);
 
-    public static void init()
+    public static void preInit()
     {
         GameRegistry.registerItem(igniter, Names.Items.IGNITER);
         GameRegistry.registerItem(scicon, Names.Items.SCICON);

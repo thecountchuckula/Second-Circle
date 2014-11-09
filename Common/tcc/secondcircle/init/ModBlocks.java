@@ -13,7 +13,7 @@ public class ModBlocks
     public static final BlockSC portal = new BlockPortal();
     public static final Block fire = new BlockFire();
 
-    public static void init()
+    public static void preInit()
     {
         GameRegistry.registerBlock(portal, Names.Blocks.PORTAL);
         GameRegistry.registerBlock(fire, Names.Blocks.FIRE);

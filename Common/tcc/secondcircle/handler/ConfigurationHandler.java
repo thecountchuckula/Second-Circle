@@ -12,7 +12,7 @@ public class ConfigurationHandler
     public static Configuration configuration;
     public static boolean testValue = false;
 
-    public static void init(File configFile)
+    public static void preInit(File configFile)
     {
         // Create the configuration object from the given configuration file
         if (configuration == null)

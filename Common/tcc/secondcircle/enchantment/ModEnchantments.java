@@ -12,7 +12,7 @@ public class ModEnchantments
 	public static Enchantment swiftness;
     public static Enchantment firetool;
 	
-    public static void init() {
+    public static void preInit() {
         defEnchantment();
         initGameRegistry();
         initLanguageRegistry();

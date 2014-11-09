@@ -1,5 +1,6 @@
 package com.tcc.secondcircle.event;
 
+import com.tcc.secondcircle.entity.EntityVampire;
 import com.tcc.secondcircle.handler.AchievementHandler;
 import com.tcc.secondcircle.init.ModItems;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -7,6 +8,7 @@ import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 
 public class BatKillEvent{
@@ -15,13 +17,14 @@ public class BatKillEvent{
     @SubscribeEvent
 	public void onBatKill(LivingDropsEvent event) {
 		// algorithm by Pahimar
-		event.drops.clear();
+        World world = event.entityLiving.worldObj;
 		if (event.source.getDamageType().equals("player")) {
 			EntityPlayer player = (EntityPlayer) event.source.getEntity();
 
-			if (event.entityLiving instanceof EntityBat) {
+            if (event.entityLiving instanceof EntityBat) {
+                event.drops.clear();
                 int meat = ((EntityBat) event.entityLiving).worldObj.rand.nextInt(2);
-                if(meat < 2)
+                if (meat < 2)
                 {
                     event.entityLiving.dropItem(ModItems.rawbat, 1);
 
@@ -62,6 +65,8 @@ public class BatKillEvent{
 		if (event.source.getSourceOfDamage() instanceof EntityArrow) {
 			if (((EntityArrow) event.source.getSourceOfDamage()).shootingEntity != null) {
 				if (((EntityArrow) event.source.getSourceOfDamage()).shootingEntity instanceof EntityPlayer) {
+
+                    event.drops.clear();
 
 					EntityPlayer player = (EntityPlayer) event.source.getEntity();
 					if (event.entityLiving instanceof EntityBat) {

@@ -41,4 +41,12 @@ public final class Names
         public static final String SECONDCIRCLEFLY = "secondcirclefly";
         public static final String SECONDCIRCLEBAT = "secondcirclebat";
     }
+
+    public class Entities {
+        public final static String VAMPIRE = "vampire";
+        public final static String MUNCHKIN = "munchkin";
+        public final static String SCARECROW = "scarecrow";
+        public final static String TWISTER = "twister";
+        public final static String GOODWITCH = "goodwitch";
+    }
 }
