@@ -1,5 +1,6 @@
 package com.tcc.secondcircle.entity;
 
+import com.tcc.secondcircle.reference.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -370,12 +371,13 @@ public class EntityScarecrow extends EntityMob
         }
     }
 
+
     /**
      * Returns the sound this mob makes while it's alive.
      */
     protected String getLivingSound()
     {
-        return this.isScreaming() ? "mob.endermen.scream" : "mob.endermen.idle";
+        return this.isScreaming() ? Reference.SOUNDDIR + "scarecrow.scream" : Reference.SOUNDDIR + "scarecrow.idle";
     }
 
     /**
@@ -383,7 +385,7 @@ public class EntityScarecrow extends EntityMob
      */
     protected String getHurtSound()
     {
-        return "mob.endermen.hit";
+        return Reference.SOUNDDIR + "scarecrow.hurt";
     }
 
     /**
@@ -391,12 +393,12 @@ public class EntityScarecrow extends EntityMob
      */
     protected String getDeathSound()
     {
-        return "mob.endermen.death";
+        return Reference.SOUNDDIR + "scarecrow.death";
     }
 
     protected Item getDropItem()
     {
-        return Items.ender_pearl;
+        return Items.wheat;
     }
 
     /**

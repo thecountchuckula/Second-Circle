@@ -1,5 +1,6 @@
 package com.tcc.secondcircle.entity;
 
+import com.tcc.secondcircle.reference.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
@@ -63,7 +64,7 @@ public class EntityGoodWitch extends EntityMob implements IRangedAttackMob
      */
     protected String getLivingSound()
     {
-        return "mob.witch.idle";
+        return Reference.SOUNDDIR + "goodwitch.idle";
     }
 
     /**
@@ -71,7 +72,7 @@ public class EntityGoodWitch extends EntityMob implements IRangedAttackMob
      */
     protected String getHurtSound()
     {
-        return "mob.witch.hurt";
+        return Reference.SOUNDDIR + "goodwitch.hurt";
     }
 
     /**
@@ -79,7 +80,7 @@ public class EntityGoodWitch extends EntityMob implements IRangedAttackMob
      */
     protected String getDeathSound()
     {
-        return "mob.witch.death";
+        return Reference.SOUNDDIR + "goodwitch.death";
     }
 
     /**

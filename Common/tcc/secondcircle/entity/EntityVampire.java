@@ -1,11 +1,11 @@
 package com.tcc.secondcircle.entity;
 
 import com.tcc.secondcircle.init.ModItems;
+import com.tcc.secondcircle.reference.Reference;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -14,27 +14,29 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
-public class EntityVampire extends EntityZombie {
+public class EntityVampire extends EntityMob {
     public EntityVampire(World par1World) {
         super(par1World);
         this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.2D, false));
-        this.tasks.addTask(3, new EntityAIWander(this, 1.0D));
-        this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        this.tasks.addTask(5, new EntityAILookIdle(this));
-        this.tasks.addTask(6, new EntityAIFleeSun(this, 0.5D));
+        this.tasks.addTask(2, new EntityAIRestrictSun(this));
+        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.2D, false));
+        this.tasks.addTask(4, new EntityAIFleeSun(this, 1.0D));
+        this.tasks.addTask(5, new EntityAIWander(this, 1.0D));
+        this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+        this.tasks.addTask(7, new EntityAILookIdle(this));
+        this.setCanPickUpLoot(true);
 
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
     }
-    @Override
+
      protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(40.0D);
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(16.0D);
         this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.5D);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.3D);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.2250000089406967D);
         this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(2.0D);
     }
     public boolean isAIEnabled()
@@ -45,6 +47,13 @@ public class EntityVampire extends EntityZombie {
     {
         return EnumCreatureAttribute.UNDEAD;
     }
+
+    protected void entityInit()
+    {
+        super.entityInit();
+        this.dataWatcher.addObject(13, new Byte((byte)0));
+    }
+
     /**
      * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
      * use this to react to sunlight and start to burn.
@@ -95,6 +104,30 @@ public class EntityVampire extends EntityZombie {
             case 2:
                 this.dropItem(ModItems.rawbat, 1);
         }
+    }
+
+    /**
+     * Returns the sound this mob makes while it's alive.
+     */
+    protected String getLivingSound()
+    {
+        return Reference.SOUNDDIR + "vampire.say";
+    }
+
+    /**
+     * Returns the sound this mob makes when it is hurt.
+     */
+    protected String getHurtSound()
+    {
+        return Reference.SOUNDDIR + "vampire.hurt";
+    }
+
+    /**
+     * Returns the sound this mob makes on death.
+     */
+    protected String getDeathSound()
+    {
+        return Reference.SOUNDDIR + "vampire.death";
     }
 
     /**

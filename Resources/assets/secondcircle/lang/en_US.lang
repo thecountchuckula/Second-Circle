@@ -11,6 +11,7 @@ item.secondcircle:igniter.name=Second Circle Portal Igniter
 item.secondcircle:scicon.name=Second Circle Icon
 item.secondcircle:rawbat.name=Raw Bat Meat
 item.secondcircle:cookedbat.name=Cooked Bat Meat
+item.secondcircle:rock.name=Rock
 
 # Blocks
 tile.secondcircle:portal.name=Second Circle Portal

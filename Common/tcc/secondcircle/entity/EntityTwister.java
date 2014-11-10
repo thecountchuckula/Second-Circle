@@ -1,5 +1,6 @@
 package com.tcc.secondcircle.entity;
 
+import com.tcc.secondcircle.reference.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockAir;
@@ -27,8 +28,6 @@ public class EntityTwister extends EntityMob
     /** ticks until heightOffset is randomized */
     private int heightOffsetUpdateTime;
     private int field_70846_g;
-    private static final String __OBFID = "CL_00001682";
-    private String soundPath = "mob.twister";
     public EntityTwister(World p_i1731_1_)
     {
         super(p_i1731_1_);
@@ -45,7 +44,6 @@ public class EntityTwister extends EntityMob
 
     }
 
-    @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
@@ -71,7 +69,7 @@ public class EntityTwister extends EntityMob
      */
     protected String getLivingSound()
     {
-        return soundPath + ".breathe";
+        return Reference.SOUNDDIR + "twister.idle";
     }
 
     /**
@@ -79,7 +77,7 @@ public class EntityTwister extends EntityMob
      */
     protected String getHurtSound()
     {
-        return soundPath + ".hit";
+        return Reference.SOUNDDIR + "twister.hit";
     }
 
     /**
@@ -87,7 +85,7 @@ public class EntityTwister extends EntityMob
      */
     protected String getDeathSound()
     {
-        return soundPath + ".death";
+        return Reference.SOUNDDIR + "twister.death";
     }
 
     @SideOnly(Side.CLIENT)

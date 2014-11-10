@@ -8,6 +8,8 @@ public final class Names
         public static final String SCICON = "scicon";
         public static final String RAWBAT = "rawbat";
         public static final String COOKEDBAT = "cookedbat";
+        public static final String ROCK = "rock";
+
     }
 
     public static final class Blocks

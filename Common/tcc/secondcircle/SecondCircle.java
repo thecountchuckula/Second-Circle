@@ -19,7 +19,9 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.MinecraftForge;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS)
 public class SecondCircle
@@ -29,7 +31,7 @@ public class SecondCircle
 	
 	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
     public static IProxy proxy;
-    @SidedProxy(clientSide=Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
+    @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
     public static CommonProxy commonProxy;
 
     @Mod.EventHandler
@@ -52,6 +54,7 @@ public class SecondCircle
     @Mod.EventHandler
     public void Init(FMLInitializationEvent event)
     {
+        MinecraftForge.addGrassSeed(new ItemStack(ModItems.rock, 1, 0), 10);
         EventHandler.init();
         CraftingHandler.init();
         AchievementHandler.init();

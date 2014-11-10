@@ -6,15 +6,11 @@ import net.minecraft.client.model.ModelWitch;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 
-/**
- * Created by deofavente on 11/7/2014.
- */
 public class ModelGoodWitch extends ModelVillager
 {
     public boolean field_82900_g;
     private ModelRenderer field_82901_h = (new ModelRenderer(this)).setTextureSize(64, 128);
     private ModelRenderer witchHat;
-    private static final String __OBFID = "CL_00000866";
 
     public ModelGoodWitch(float p_i1166_1_)
     {
