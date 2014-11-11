@@ -13,6 +13,8 @@ public class ModItems
     public static final ItemBatMeat rawbat = new ItemBatMeat(2, 0.3F, true, false, Names.Items.RAWBAT);
     public static final ItemBatMeat cookedbat = new ItemBatMeat(7, 0.9F, false, false, Names.Items.COOKEDBAT);
     public static final ItemSC rock = new ItemRock();
+    public static final ItemSC glassshard = new ItemGlassShard();
+    public static final ItemSC pileofshards = new ItemPileOfShards();
 
     public static void preInit()
     {
@@ -21,5 +23,7 @@ public class ModItems
         GameRegistry.registerItem(rawbat, Names.Items.RAWBAT);
         GameRegistry.registerItem(cookedbat, Names.Items.COOKEDBAT);
         GameRegistry.registerItem(rock, Names.Items.ROCK);
+        GameRegistry.registerItem(glassshard, Names.Items.GLASSSHARD);
+        GameRegistry.registerItem(pileofshards, Names.Items.PILEOFSHARDS);
     }
 }

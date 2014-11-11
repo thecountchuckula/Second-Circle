@@ -21,6 +21,8 @@ public class CraftingHandler
     {
         GameRegistry.addRecipe(new ItemStack(ModItems.igniter), "  n", " q ", " d ", 'n', Items.nether_star, 'q', Items.quartz, 'd', Items.diamond);
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.igniter), " s ", "sss", " s ", 's', "stickWood"));
+        GameRegistry.addRecipe(new ItemStack(ModItems.pileofshards, 1, 0), "ss", "ss", 's', ModItems.glassshard);
         GameRegistry.addSmelting(new ItemStack(ModItems.rawbat, 1, 0), new ItemStack(ModItems.cookedbat, 1, 0), 0.35F);
+        GameRegistry.addSmelting(new ItemStack(ModItems.pileofshards, 1, 0), new ItemStack(Blocks.glass, 1, 0), 0.1F);
     }
 }

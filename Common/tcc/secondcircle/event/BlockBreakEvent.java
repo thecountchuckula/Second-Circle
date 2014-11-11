@@ -3,10 +3,11 @@
 package com.tcc.secondcircle.event;
 
 import com.tcc.secondcircle.enchantment.ModEnchantments;
+import com.tcc.secondcircle.init.ModItems;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
+import net.minecraft.block.*;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -62,6 +63,23 @@ public class BlockBreakEvent {
                     }
                 }
             }
+        }
+        if (block == Blocks.glass | block == Blocks.stained_glass && !event.isSilkTouching)
+        {
+            int shards = 1;
+            event.drops.clear();
+            event.drops.add(new ItemStack(ModItems.glassshard, shards, 0));
+            if (fortuneLevel >= 1) {
+                int fshards = fortuneLevel;
+                event.drops.add(new ItemStack(ModItems.glassshard, (event.world.rand.nextInt(fshards)), 0));
+            }
+        }
+        if (block == Blocks.stained_glass_pane | block == Blocks.glass_pane && !event.isSilkTouching)
+        {
+            int shards = 1;
+            event.drops.clear();
+            event.drops.add(new ItemStack(ModItems.glassshard, shards, 0));
+
         }
     }
 }

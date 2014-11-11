@@ -5,6 +5,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
@@ -36,6 +37,12 @@ public class EntityRock extends EntityThrowable
         if (par1MovingObjectPosition.entityHit == null)
     {
         this.worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(ModItems.rock, 1, 0)));
+        if (this.worldObj.getBlock(par1MovingObjectPosition.blockX, par1MovingObjectPosition.blockY, par1MovingObjectPosition.blockZ) == Blocks.glass)
+        {
+            this.worldObj.setBlockToAir(par1MovingObjectPosition.blockX, par1MovingObjectPosition.blockY, par1MovingObjectPosition.blockZ);
+            this.worldObj.playSoundEffect((double)this.posX + 0.5D, (double)this.posY + 0.5D, (double)this.posZ + 0.5D, "dig.glass", 1.0F, 1.0F);;
+            this.worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(ModItems.glassshard, 1, 0)));
+        }
     }
         if (par1MovingObjectPosition.entityHit != null)
         {

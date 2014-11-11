@@ -9,7 +9,8 @@ public final class Names
         public static final String RAWBAT = "rawbat";
         public static final String COOKEDBAT = "cookedbat";
         public static final String ROCK = "rock";
-
+        public static final String GLASSSHARD = "glassshard";
+        public static final String PILEOFSHARDS = "pileofshards";
     }
 
     public static final class Blocks
